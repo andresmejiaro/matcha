@@ -1,0 +1,55 @@
+version: '3'
+services:
+  mariadb: 
+    image: mariadb:latest
+    volumes:
+      - mdb_vol:/var/lib/mysql
+      - ./mariadb/scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "8666:3306"
+    networks:
+      dockern:
+        ipv4_address: 10.0.0.2
+    env_file:
+      - .env
+  nginx:
+    build: nginx
+    volumes:
+      - ./camagru_back:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - "mariadb"
+      - "php"
+    networks:
+      dockern:
+        ipv4_address: 10.0.0.3
+    restart: on-failure
+  
+  node:
+    build: node
+    volumes:
+      - ./matcha_back:/var/www/html
+    expose:
+      - "9000"
+    networks:
+      dockern:
+        ipv4_address: 10.0.0.4
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    restart: on-failure
+    
+  
+  
+volumes:
+  mdb_vol: {}
+networks:
+  dockern: 
+    ipam:
+      config:
+        - subnet: 10.0.0.0/29
+          gateway: 10.0.0.1
+
+  
