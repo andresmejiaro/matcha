@@ -12,14 +12,14 @@
 //Report and Block
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
-import {Carousel, CarouselItem} from "react-bootstrap";
+import '../styles/styles.css';
+import {ButtonGroup, Carousel,  Button} from "react-bootstrap";
 import React from 'react';
-import prof1 from './images/Alex-matcha-prof/1.webp'
-import prof2 from './images/Alex-matcha-prof/2.webp'
-import prof3 from './images/Alex-matcha-prof/3.webp'
-import prof4 from './images/Alex-matcha-prof/4.webp'
-import prof5 from './images/Alex-matcha-prof/5.webp'
+import prof1 from '../images/Alex-matcha-prof/1.webp'
+import prof2 from '../images/Alex-matcha-prof/2.webp'
+import prof3 from '../images/Alex-matcha-prof/3.webp'
+import prof4 from '../images/Alex-matcha-prof/4.webp'
+import prof5 from '../images/Alex-matcha-prof/5.webp'
 
 export class ProfileViewer extends React.Component {
     constructor(props) {
@@ -78,6 +78,11 @@ export class ProfileViewer extends React.Component {
 
 
                   </div>
+                <ButtonGroup className={"col-md-8 offset-md-2"}>
+                    <Button variant="success">Like 👍🏻</Button>
+                    <Button variant={"warning"}> Report ⚠️</Button>
+                    <Button variant={"danger"}> Block ⛔</Button>
+                </ButtonGroup>
                 </div>
               </div>
 

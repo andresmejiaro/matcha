@@ -2,7 +2,7 @@
 // Legal?
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
 export class Footer extends React.Component {

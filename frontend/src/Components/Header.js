@@ -8,9 +8,11 @@
 // A unmatch
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import {Nav, Navbar} from "react-bootstrap";
+
 
 export class Header extends React.Component {
   constructor(props) {
@@ -19,8 +21,15 @@ export class Header extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div >
+        <Navbar bg="dark">
+            <Link to="/" className="navbar-brand custom-brand">Matcha</Link>
+            <Link to="/profileinfo"> Profile Fill</Link>
+            <Link to="/profileviewer"> Profile Viewer</Link>
 
+            <Link to ="/signin"> <button className="btn btn-outline-light ml-auto">Sign In</button> </Link>
+
+        </Navbar>
       <nav className="navbar bg-light transparent-navbar">
           <Link to="/" className="navbar-brand custom-brand">Matcha</Link>
           <Link to="/profileinfo"> Profile Fill</Link>

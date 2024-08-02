@@ -1,25 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import './styles/styles.css';
 import React from 'react';
 
 
-import {Header} from './Header.js'
-import { Landing } from './LandingPage.js';
+import {Header} from './Components/Header.js'
+import { Landing } from './Components/LandingPage.js';
 import { Route, Routes } from 'react-router-dom';
-import { SignUp } from './SignUp.js';
-import { Account } from './Account.js';
-import { Chat } from './Chat.js';
-import {ChatList} from './ChatList.js'
-import {SignIn} from './SignIn.js'
-import {Map} from './Map.js'
-import {Memory} from './Memory.js'
-import {NotFound} from './NotFound.js'
-import {PossibleDateSearch} from './PossibleDatesSearch.js'
-import {ProfileInfo} from './ProfileInfo.js'
-import {ProfileViewer} from './ProfileViewer.js'
-import {PossibleDateSuggestion} from './PossibleDatesSuggestion.js';
-import {VideoChat} from "./VideoChat.js"
-import { Recover } from './Recover.js';
+import { SignUp } from './Components/SignUp.js';
+import { Account } from './Components/Account.js';
+import { Chat } from './Components/Chat.js';
+import {ChatList} from './Components/ChatList.js'
+import {SignIn} from './Components/SignIn.js'
+import {Map} from './Components/Map.js'
+import {Memory} from './Components/Memory.js'
+import {NotFound} from './Components/NotFound.js'
+import {PossibleDateSearch} from './Components/PossibleDatesSearch.js'
+import {ProfileInfo} from './Components/ProfileInfo.js'
+import {ProfileViewer} from './Components/ProfileViewer.js'
+import {PossibleDateSuggestion} from './Components/PossibleDatesSuggestion.js';
+import {VideoChat} from "./Components/VideoChat.js"
+import { Recover } from './Components/Recover.js';
 
 class App extends React.Component {
   constructor(props) {

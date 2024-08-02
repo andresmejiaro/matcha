@@ -1,13 +1,10 @@
-//List of matched users
-//Preview of the last line
-//Dot on new messages
-//Sorted by recent
+//Bonus 
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
-export class ChatList extends React.Component {
+export class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {"hola": 12};
@@ -15,7 +12,7 @@ export class ChatList extends React.Component {
   render() {
     return (
       <h1>
-      "ChatList"
+      "Map"
       </h1>
     );
   }

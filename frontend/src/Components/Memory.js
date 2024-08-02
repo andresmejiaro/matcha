@@ -1,12 +1,11 @@
-//Edit info 
-//last name
-//first name
+//who has seen me
+// who has liked me
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
-export class Account extends React.Component {
+export class Memory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {"hola": 12};
@@ -14,7 +13,7 @@ export class Account extends React.Component {
   render() {
     return (
       <h1>
-        "Account"
+      "Memory"
       </h1>
     );
   }

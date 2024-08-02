@@ -1,16 +1,13 @@
-//Gender
-//Interested in
-//Bio
-//interest tags
-//Pictures (5)
-
-// Bonus: Import from social media
+//List of matched users
+//Preview of the last line
+//Dot on new messages
+//Sorted by recent
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
-export class ProfileInfo extends React.Component {
+export class ChatList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {"hola": 12};
@@ -18,7 +15,7 @@ export class ProfileInfo extends React.Component {
   render() {
     return (
       <h1>
-      "ProfileInfo"
+      "ChatList"
       </h1>
     );
   }

@@ -6,7 +6,7 @@
 //Bonus Omniauth
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 

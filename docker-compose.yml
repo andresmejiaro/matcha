@@ -1,4 +1,3 @@
-version: '3'
 services:
   mariadb: 
     image: mariadb:latest
@@ -20,18 +19,20 @@ services:
       - "8080:80"
     depends_on:
       - "mariadb"
-      - "php"
     networks:
       dockern:
         ipv4_address: 10.0.0.3
     restart: on-failure
   
-  node:
-    build: node
+  node_fe_dev:
+    build: ./frontend
     volumes:
-      - ./matcha_back:/var/www/html
-    expose:
-      - "9000"
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/styles:/app/styles
+      - /app/node_modules
+    ports:
+      - "3000:3000"
     networks:
       dockern:
         ipv4_address: 10.0.0.4
@@ -40,7 +41,6 @@ services:
     env_file:
       - .env
     restart: on-failure
-    
   
   
 volumes:

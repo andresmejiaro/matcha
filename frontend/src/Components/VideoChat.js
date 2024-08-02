@@ -1,14 +1,10 @@
-//Filters
-// tag
-// cleverly match?
-// age
-// location
+//Bonus
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
-export class PossibleDateSuggestion extends React.Component {
+export class VideoChat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {"hola": 12};
@@ -16,7 +12,7 @@ export class PossibleDateSuggestion extends React.Component {
   render() {
     return (
       <h1>
-      "PossibleDateSuggestion"
+      "VideoChat"
       </h1>
     );
   }

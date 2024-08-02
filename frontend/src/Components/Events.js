@@ -1,11 +1,10 @@
-//Realtime chat
-// colored bubbles
+//Bonus: Events
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './styles.css';
+import '../styles/styles.css';
 import React from 'react';
 
-export class Chat extends React.Component {
+export class Events extends React.Component {
   constructor(props) {
     super(props);
     this.state = {"hola": 12};
@@ -13,7 +12,7 @@ export class Chat extends React.Component {
   render() {
     return (
       <h1>
-      "Chat"
+      "Events"
       </h1>
     );
   }
