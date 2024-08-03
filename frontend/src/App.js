@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './styles/styles.css';
-import React from 'react';
+import React, { useEffect } from 'react'
 
 
 import {Header} from './Components/Header.js'
@@ -21,41 +21,43 @@ import {PossibleDateSuggestion} from './Components/PossibleDatesSuggestion.js';
 import {VideoChat} from "./Components/VideoChat.js"
 import { Recover } from './Components/Recover.js';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {"hola": 12};
-  }
-  render() {
-    return (
-      <div className="custom-bg">
-        <Routes>
-          <Route  path="/" element={<Header />} >
-         <Route exact path="/" element={<Landing />}></Route>
-         <Route path="/signup" element={<SignUp />}></Route>
-         <Route path="/signin" element={<SignIn />}></Route>
-         <Route path="/account" element={<Account />}></Route>
-         <Route path="/chat" element={<Chat />}></Route>
-         <Route path="/chatlist" element={<ChatList />}></Route>
-         <Route path="/map" element={<Map />}></Route>
-         <Route path="/memory" element={<Memory />}></Route>
-         {/* <Route path="/notfound" element={<NotFound />}></Route> */}
-         <Route path="/profileinfo" element={<ProfileInfo />}></Route>
-         <Route path="/profileviewer" element={<ProfileViewer />}></Route>
-         <Route path="/posibledatesearch" element={<PossibleDateSearch />}></Route>
-         <Route path="/posibledatesuggestion" element={<PossibleDateSuggestion />}></Route>
-         <Route path="/profileinfo" element={<ProfileInfo />}></Route>
-         <Route path="/profileviewer" element={<ProfileViewer />}></Route>
-         <Route path="/videochat" element={<VideoChat />}></Route>
-         <Route path="/recover" element={<Recover />}></Route>
-         </Route>
-         <Route path = "*" element={<NotFound />} />
-        </Routes>
-        
-     </div>
-    );
-  }
-};
+import {init} from './Reducers/authSlice.js';
+import { useDispatch } from 'react-redux';
 
+export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+    dispatch(init());
+  },[dispatch])
+
+  return (
+    <div className="custom-bg">
+      <Routes>
+        <Route  path="/" element={<Header />} >
+       <Route exact path="/" element={<Landing />}></Route>
+       <Route path="/signup" element={<SignUp />}></Route>
+       <Route path="/signin" element={<SignIn />}></Route>
+       <Route path="/account" element={<Account />}></Route>
+       <Route path="/chat" element={<Chat />}></Route>
+       <Route path="/chatlist" element={<ChatList />}></Route>
+       <Route path="/map" element={<Map />}></Route>
+       <Route path="/memory" element={<Memory />}></Route>
+       {/* <Route path="/notfound" element={<NotFound />}></Route> */}
+       <Route path="/profileinfo" element={<ProfileInfo />}></Route>
+       <Route path="/profileviewer" element={<ProfileViewer />}></Route>
+       <Route path="/posibledatesearch" element={<PossibleDateSearch />}></Route>
+       <Route path="/posibledatesuggestion" element={<PossibleDateSuggestion />}></Route>
+       <Route path="/profileinfo" element={<ProfileInfo />}></Route>
+       <Route path="/profileviewer" element={<ProfileViewer />}></Route>
+       <Route path="/videochat" element={<VideoChat />}></Route>
+       <Route path="/recover" element={<Recover />}></Route>
+       </Route>
+       <Route path = "*" element={<NotFound />} />
+      </Routes>
+      
+   </div>
+  );
+}
 
 export default App;

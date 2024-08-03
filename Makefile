@@ -6,7 +6,7 @@
 #    By: amejia <amejia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/31 00:03:16 by amejia            #+#    #+#              #
-#    Updated: 2024/07/29 23:22:47 by amejia           ###   ########.fr        #
+#    Updated: 2024/08/03 15:44:34 by amejia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ fclean:
 	@$(DOCKER) system prune -a --force
 	@echo "\033[1;33mRemoving Docker Volumes\033[0m"
 	@$(DOCKER) volume prune --force
+	@	docker network prune -f
 	rm -rf $(FRONTENDDIR)/build
 
 

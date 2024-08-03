@@ -49,7 +49,7 @@ networks:
   dockern: 
     ipam:
       config:
-        - subnet: 10.0.0.0/29
+        - subnet: 10.0.0.0/28
           gateway: 10.0.0.1
 
   
