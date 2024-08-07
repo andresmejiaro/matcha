@@ -13,8 +13,6 @@ import { login } from '../Reducers/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 
-const BACKEND = process.env.BACKEND
-
 
 export const SignIn = () =>{
   const dispatch = useDispatch();
@@ -27,7 +25,8 @@ export const SignIn = () =>{
     const password = event.target.password.value;
 
     event.preventDefault();
-    fetch(`${BACKEND}/api/signin`,
+    
+    fetch(`/api/signin`,
       {method: 'POST',
         headers: {'Content-Type':'application/json',},
         body : JSON.stringify({email,password})

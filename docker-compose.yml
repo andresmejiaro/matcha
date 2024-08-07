@@ -11,18 +11,16 @@ services:
         ipv4_address: 10.0.0.2
     env_file:
       - ./mariadb/.env
-  # nginx:
-  #   build: nginx
-  #   volumes:
-  #     - ./camagru_back:/var/www/html
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - "mariadb"
-  #   networks:
-  #     dockern:
-  #       ipv4_address: 10.0.0.3
-  #   restart: on-failure
+  nginx:
+    build: nginx
+    volumes:
+      - ./camagru_back:/var/www/html
+    ports:
+      - "3000:3000"
+    networks:
+      dockern:
+        ipv4_address: 10.0.0.3
+    restart: on-failure
   
   node_fe_dev:
     build: ./frontend
@@ -31,15 +29,13 @@ services:
       - ./frontend/public:/app/public
       - ./frontend/styles:/app/styles
       - /app/node_modules
-    ports:
-      - "3000:3000"
     networks:
       dockern:
         ipv4_address: 10.0.0.4
     depends_on:
       - backend
     env_file:
-      - .env
+      - ./frontend/.env
     restart: on-failure
 
   backend:
