@@ -31,8 +31,8 @@ export class ProfileViewer extends React.Component {
       return (
           <div className="container d-flex justify-content-center align-content-center vh-80">
             <div className={"row"}>
-              <div className={"col-md-8 offset-md-2 justify-content-center align-items-center"}>
-                <Carousel slide ={false}>
+              <div className={"col-md-6 offset-md-3 justify-content-center align-items-center"}>
+                <Carousel slide ={false}  >
                   <Carousel.Item>
                     <img className={"img-fluid w-100 "} src={prof1} alt="Prof"/>
                       <Carousel.Caption>
@@ -76,9 +76,8 @@ export class ProfileViewer extends React.Component {
                 </Carousel>
 
 
-
                   </div>
-                <ButtonGroup className={"col-md-8 offset-md-2"}>
+                <ButtonGroup className={"col-md-6 offset-md-3"}>
                     <Button variant="success">Like 👍🏻</Button>
                     <Button variant={"warning"}> Report ⚠️</Button>
                     <Button variant={"danger"}> Block ⛔</Button>

@@ -32,9 +32,12 @@ export const App = () => {
   },[dispatch])
 
   return (
+  <div>
+    <div>
+      <Header/>
+    </div>
     <div className="custom-bg">
       <Routes>
-        <Route  path="/" element={<Header />} >
        <Route exact path="/" element={<Landing />}></Route>
        <Route path="/signup" element={<SignUp />}></Route>
        <Route path="/signin" element={<SignIn />}></Route>
@@ -52,10 +55,10 @@ export const App = () => {
        <Route path="/profileviewer" element={<ProfileViewer />}></Route>
        <Route path="/videochat" element={<VideoChat />}></Route>
        <Route path="/recover" element={<Recover />}></Route>
-       </Route>
        <Route path = "*" element={<NotFound />} />
       </Routes>
       
+   </div>
    </div>
   );
 }

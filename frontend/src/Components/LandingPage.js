@@ -14,7 +14,7 @@ export class Landing extends React.Component {
         
         <div className="call-to-action d-flex container-fluid justify-content-center flex-column">
           <div className="row w-100 justify-content-center mt-3">
-          <img src={mainImage} alt="Desc"  style={{ width: '500px', height: 'auto' }}></img>
+          <img src={mainImage} alt="Desc"  style={{ width: '350px', height: 'auto' }}></img>
           <h1 className="text-center">Spark Sweet Moments</h1> 
            <div className="col-md-4 text-center">
             <Link to ="/signup">

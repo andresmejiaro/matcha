@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../styles/styles.css';
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import {Nav, Navbar} from "react-bootstrap";
+import {Nav, Navbar, Container} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../Reducers/authSlice';
 
@@ -22,23 +22,21 @@ export const Header = () => {
   return (
     <div >
       <Navbar bg="dark">
-          <Link to="/" className="navbar-brand custom-brand">Matcha</Link>
-          <Link to="/profileinfo"> Profile Fill</Link>
-          <Link to="/profileviewer"> Profile Viewer</Link>
+        <Container>
 
-          <Link to ="/signin"> <button className="btn btn-outline-light ml-auto">Sign In</button> </Link>
+          <Navbar.Brand as={Link} to="/" className='custom-brand'>Matcha</Navbar.Brand>
+          <Navbar.Collapse id ="basic-navbar-nav">
 
-      </Navbar>
-    <nav className="navbar bg-light transparent-navbar">
-        <Link to="/" className="navbar-brand custom-brand">Matcha</Link>
+            <Nav.Link as={Link} className="text-light" to="/profileinfo"> Profile Fill</Nav.Link> 
+            <Nav.Link as={Link} className="text-light" to="/profileviewer"> Profile Viewer</Nav.Link>
+          </Navbar.Collapse>
 
-        <Link to="/profileinfo"> Profile Fill</Link>
-        <Link to="/profileviewer"> Profile Viewer</Link>
-        { !isAuthenticated ?
+          {!isAuthenticated ?
          <Link to ="/signin"> <button className="btn btn-outline-light ml-auto">Sign In</button> </Link> :
          <Link to ="/"><button onClick={()=>dispatch(logout())} className="btn btn-outline-light ml-auto">Sign Out</button> </Link>
-        }         
-    </nav>
+        }
+        </Container>
+      </Navbar>
     <Outlet>
     </Outlet>
     </div>
