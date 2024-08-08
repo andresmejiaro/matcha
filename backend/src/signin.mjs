@@ -6,9 +6,9 @@ const checkCredentials = (email, passoword) => {
 
 
 export const signIn = (req, res) => {
-    console.log(req.body);
-    const {email, password} = req.body;
-    console.log(email, password)
+    const email = req.body.email;
+    const password = req.body.password;
+    
     if (!checkCredentials(email,password)){
         return res.status(400).send("error")
     }

@@ -14,7 +14,7 @@ services:
   nginx:
     build: nginx
     volumes:
-      - ./camagru_back:/var/www/html
+      - ./matcha_back:/var/www/html
     ports:
       - "3000:3000"
     networks:
