@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../Reducers/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
-
+import {Row, Container, Col} from 'react-bootstrap'
 
 export const SignIn = () =>{
   const dispatch = useDispatch();
@@ -43,31 +43,40 @@ export const SignIn = () =>{
       }
     }).catch(error => {
       console.log(error);
-      setError('An error occured. Pleasy try again');
+      setError('An error occured. Please try again');
     })
   };
   
   return (
-    <div className='container center flex-column justify-content content-center'>
-    <form onSubmit={handleSubmit}>
+    <Container fluid>
+      <Row>
+      <Col></Col>
+      <Col>
+      <form onSubmit={handleSubmit}>
 
-        <h1>{isAuth}</h1>
-        ({error && <p style={{color:'red'}}>{error} </p>})
-        <label htmlFor="email">email:</label>
-        <input type='text' className='form-control' id='email' placeholder='username' />
+          <label htmlFor="email">email:</label>
+          <input type='text' className='form-control' id='email' placeholder='username' />
 
-      
-      
-        <label htmlFor="password">First Name:</label>
-        <input type='password' className='form-control' id='password' placeholder='password' />
         
+        
+          <label htmlFor="password">Password:</label>
+          <input type='password' className='form-control' id='password' placeholder='password' />
+          
 
+        
+      <button className='btn btn-light brn-lg -w-auto content-center' type='Submit'>Sign in</button>
+      </form>
       
-    <button className='btn btn-light brn-lg -w-auto content-center' type='Submit'>Sign in</button>
-    </form>
-    Forgot your password <Link to="/recover">Recover</Link><br />
-    Don't have an account<Link to="/signup">Sign Up </Link>
-  </div>
+          <h1>{isAuth}</h1>
+          {error && <p style={{color:'red'}}>{error} </p>}
+      Forgot your password <Link to="/recover">Recover</Link><br />
+      Don't have an account<Link to="/signup">Sign Up </Link>
+      </Col>
+        
+    <Col></Col>
+      </Row>
+
+    </Container>
   );
 
 }

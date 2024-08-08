@@ -13,7 +13,7 @@ export const signIn = (req, res) => {
         return res.status(400).send("error")
     }
     else 
-        return res.status(201).send({test:"test"})
+        return res.status(201).send({"success":true})
 }
 
 export default signIn;
