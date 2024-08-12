@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './styles/styles.css';
 import React, { useEffect } from 'react'
-
+import { Container, Row, Col } from 'react-bootstrap';
 
 import {Header} from './Components/Header.js'
 import { Landing } from './Components/LandingPage.js';
@@ -20,6 +20,7 @@ import {ProfileViewer} from './Components/ProfileViewer.js'
 import {PossibleDateSuggestion} from './Components/PossibleDatesSuggestion.js';
 import {VideoChat} from "./Components/VideoChat.js"
 import { Recover } from './Components/Recover.js';
+import { Footer } from './Components/Footer.js';
 
 import {init} from './Reducers/authSlice.js';
 import { useDispatch } from 'react-redux';
@@ -32,33 +33,37 @@ export const App = () => {
   },[dispatch])
 
   return (
-  <div>
-    <div>
-      <Header/>
-    </div>
-    <div className="custom-bg">
-      <Routes>
-       <Route exact path="/" element={<Landing />}></Route>
-       <Route path="/signup" element={<SignUp />}></Route>
-       <Route path="/signin" element={<SignIn />}></Route>
-       <Route path="/account" element={<Account />}></Route>
-       <Route path="/chat" element={<Chat />}></Route>
-       <Route path="/chatlist" element={<ChatList />}></Route>
-       <Route path="/map" element={<Map />}></Route>
-       <Route path="/memory" element={<Memory />}></Route>
-       {/* <Route path="/notfound" element={<NotFound />}></Route> */}
-       <Route path="/profileinfo" element={<ProfileInfo />}></Route>
-       <Route path="/profileviewer" element={<ProfileViewer />}></Route>
-       <Route path="/posibledatesearch" element={<PossibleDateSearch />}></Route>
-       <Route path="/posibledatesuggestion" element={<PossibleDateSuggestion />}></Route>
-       <Route path="/profileinfo" element={<ProfileInfo />}></Route>
-       <Route path="/profileviewer" element={<ProfileViewer />}></Route>
-       <Route path="/videochat" element={<VideoChat />}></Route>
-       <Route path="/recover" element={<Recover />}></Route>
-       <Route path = "*" element={<NotFound />} />
-      </Routes>
+    <div fluid className="custom-bg d-flex flex-column min-vh-100">   
       
-   </div>
+          <Header/>
+       
+      <div className="flex-grow-1">
+        
+          <Routes>
+          <Route exact path="/" element={<Landing />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/account" element={<Account />}></Route>
+          <Route path="/chat" element={<Chat />}></Route>
+          <Route path="/chatlist" element={<ChatList />}></Route>
+          <Route path="/map" element={<Map />}></Route>
+          <Route path="/memory" element={<Memory />}></Route>
+          {/* <Route path="/notfound" element={<NotFound />}></Route> */}
+          <Route path="/profileinfo" element={<ProfileInfo />}></Route>
+          <Route path="/profileviewer" element={<ProfileViewer />}></Route>
+          <Route path="/posibledatesearch" element={<PossibleDateSearch />}></Route>
+          <Route path="/posibledatesuggestion" element={<PossibleDateSuggestion />}></Route>
+          <Route path="/profileinfo" element={<ProfileInfo />}></Route>
+          <Route path="/profileviewer" element={<ProfileViewer />}></Route>
+          <Route path="/videochat" element={<VideoChat />}></Route>
+          <Route path="/recover" element={<Recover />}></Route>
+          <Route path = "*" element={<NotFound />} />
+          </Routes>
+        
+      </div>
+      
+          <Footer/>
+      
    </div>
   );
 }

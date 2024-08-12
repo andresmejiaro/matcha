@@ -20,31 +20,16 @@ export const Header = () => {
   const dispatch = useDispatch();
   
   return (
-    <div >
-      <Navbar bg="dark">
-        <Container>
-          <Row>
-            <Col>
+      <Navbar bg="dark" expand="lg" className="w-100">
+          
             <Navbar.Brand as={Link} to="/" className='custom-brand'>Matcha</Navbar.Brand>
-            </Col>
-            <Col>
               <Nav.Link as={Link} className="text-light" to="/profileinfo"> Profile Fill</Nav.Link> 
-            </Col>
-            <Col>
               <Nav.Link as={Link} className="text-light" to="/profileviewer"> Profile Viewer</Nav.Link>
-            </Col>
-            <Col>
                 {!isAuthenticated ?
               <Link to ="/signin"> <button className="btn btn-outline-light ml-auto">Sign In</button> </Link> :
               <Link to ="/"><button onClick={()=>dispatch(logout())} className="btn btn-outline-light ml-auto">Sign Out</button> </Link>
               }
-            </Col>
-        </Row>
-        </Container>
-      </Navbar>
-    <Outlet>
-    </Outlet>
-    </div>
+       </Navbar>
   )
 }
 
