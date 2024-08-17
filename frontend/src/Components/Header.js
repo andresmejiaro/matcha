@@ -21,14 +21,19 @@ export const Header = () => {
   
   return (
       <Navbar bg="dark" expand="lg" className="w-100">
-          
+          <Container fluid>
+
             <Navbar.Brand as={Link} to="/" className='custom-brand'>Matcha</Navbar.Brand>
+              <Nav className='mr-auto'>
+
               <Nav.Link as={Link} className="text-light" to="/profileinfo"> Profile Fill</Nav.Link> 
               <Nav.Link as={Link} className="text-light" to="/profileviewer"> Profile Viewer</Nav.Link>
+              </Nav>
                 {!isAuthenticated ?
               <Link to ="/signin"> <button className="btn btn-outline-light ml-auto">Sign In</button> </Link> :
               <Link to ="/"><button onClick={()=>dispatch(logout())} className="btn btn-outline-light ml-auto">Sign Out</button> </Link>
-              }
+            }
+            </Container>
        </Navbar>
   )
 }

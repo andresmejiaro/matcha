@@ -7,70 +7,78 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../styles/styles.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { login } from '../Reducers/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
-import {Row, Container, Col} from 'react-bootstrap'
+import {Row, Container, Col, Form, Button} from 'react-bootstrap'
+import { wrongCredential, resetSignin, noResponse } from '../Reducers/signinSlice';
+
 
 export const SignIn = () =>{
   const dispatch = useDispatch();
-  const isAuth = useSelector((state)=> state.auth.isAuthenticated);
   const navigate = useNavigate();
-  const [error, setError] = useState('');
+  const signinState = useSelector((state) => state.signin)
+  
 
   const handleSubmit = (event) => {
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-
+    const inputs = {
+      username: event.target.username.value,
+      password: event.target.password.value,
+    }
+    
     event.preventDefault();
     
     fetch(`/api/signin`,
       {method: 'POST',
         headers: {'Content-Type':'application/json',},
-        body : JSON.stringify({email,password})
+        body : JSON.stringify(inputs)
         }
     )
     .then(response => response.json())
-    .then(data => {
+    .then((data) => {
       if(data.success){
         dispatch(login());
         navigate('/');
       }
       else {
-        setError('Incorrect email or password');
+        dispatch(wrongCredential());
       }
     }).catch(error => {
-      console.log(error);
-      setError('An error occured. Please try again');
+      dispatch(noResponse())
+      
     })
   };
+
+  useEffect(()=>{
+    return ()=>{
+      dispatch(resetSignin());
+    }
+  }, [dispatch]);
   
   return (
     <Container fluid>
       <Row>
       <Col></Col>
-      <Col>
-      <form onSubmit={handleSubmit}>
-
-          <label htmlFor="email">email:</label>
-          <input type='text' className='form-control' id='email' placeholder='username' />
-
-        
-        
-          <label htmlFor="password">Password:</label>
-          <input type='password' className='form-control' id='password' placeholder='password' />
-          
-
-        
-      <button className='btn btn-light brn-lg -w-auto content-center' type='Submit'>Sign in</button>
-      </form>
+      <Col className='text-center text-muted justify-content'>
+      <Form onSubmit = {handleSubmit}>
+        <Form.Group controlId="username">
+          <Form.Label> Username</Form.Label>
+          <Form.Control type="text" placeholder="username" required />
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label> Username</Form.Label>
+          <Form.Control type="password" placeholder="*********" required />
+        </Form.Group>
+      <Button variant="light" type="submit">
+              Submit
+      </Button>
+      </Form>
       
-          <h1>{isAuth}</h1>
-          {error && <p style={{color:'red'}}>{error} </p>}
+      {signinState.tried && <p style={{color:'red'}}> {signinState.error} </p>}
       Forgot your password <Link to="/recover">Recover</Link><br />
-      Don't have an account<Link to="/signup">Sign Up </Link>
+      Don't have an account <Link to="/signup">Sign Up </Link>
       </Col>
         
     <Col></Col>

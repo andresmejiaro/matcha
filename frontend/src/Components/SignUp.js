@@ -6,11 +6,11 @@
 //Bonus: Omniauth
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../styles/styles.css';
-import React  from 'react';
+import React, {useEffect} from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkcreationmail, couldNotCreate } from '../Reducers/signupSlice';
+import { checkcreationmail, couldNotCreate, resetSignup } from '../Reducers/signupSlice';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -79,6 +79,13 @@ export const SignUp = () => {
     }
   };
 
+  useEffect(() => {
+    
+    return () => {
+      dispatch(resetSignup());
+    };
+  }, [dispatch]); 
+
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
@@ -123,9 +130,9 @@ export const SignUp = () => {
             </Button>
             <br />
             Already have an account? <Link to="/signin">Sign In</Link>
-            {/* {signupState.tried && signupState.couldNotCreate && (
+            {signupState.tried && signupState.couldNotCreate && (
               <p style={{ color: 'red' }}>{signupState.couldNotCreateReason}</p>
-            )} */}
+            )} 
             {signupState.success && (
               <p style={{ color: 'green' }}>Signup successful! Check your email.</p>
             )}

@@ -7,5 +7,6 @@ COPY ngnix.conf /etc/nginx/conf.d/default.conf
 COPY sitesEnabled-Default.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 3000
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

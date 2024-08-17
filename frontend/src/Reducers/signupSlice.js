@@ -21,9 +21,12 @@ const signupSlice = createSlice({
             state.couldNotCreate = true;
             state.couldNotCreateReason = action.payload;
         },
+        resetSignup(state){
+            return initialState;    
+        }
         
     },
 });
 
-export const {checkcreationmail, couldNotCreate} = signupSlice.actions;
+export const {checkcreationmail, couldNotCreate, resetSignup} = signupSlice.actions;
 export default signupSlice.reducer;
