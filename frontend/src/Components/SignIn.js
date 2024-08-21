@@ -7,14 +7,14 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../styles/styles.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../Reducers/authSlice';
+import { login } from '../Slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import {Row, Container, Col, Form, Button} from 'react-bootstrap'
-import { wrongCredential, resetSignin, noResponse } from '../Reducers/signinSlice';
-
+import { wrongCredential, resetSignin, noResponse } from '../Slices/signinSlice';
+import { signInMW } from '../Middleware/signInMW';
 
 export const SignIn = () =>{
   const dispatch = useDispatch();
@@ -30,25 +30,27 @@ export const SignIn = () =>{
     
     event.preventDefault();
     
-    fetch(`/api/signin`,
-      {method: 'POST',
-        headers: {'Content-Type':'application/json',},
-        body : JSON.stringify(inputs)
-        }
-    )
-    .then(response => response.json())
-    .then((data) => {
-      if(data.success){
-        dispatch(login());
-        navigate('/');
-      }
-      else {
-        dispatch(wrongCredential());
-      }
-    }).catch(error => {
-      dispatch(noResponse())
+    dispatch(signInMW(inputs))
+    // fetch(`/api/signin`,
+    //   {method: 'POST',
+    //     headers: {'Content-Type':'application/json',},
+    //     body : JSON.stringify(inputs)
+    //     }
+    // )
+    // .then(response => response.json())
+    // .then((data) => {
+    //   console.log(data);
+    //   if(data.success){
+    //     dispatch(login({"username":inputs.username}));
+    //     navigate('/');
+    //   }
+    //   else {
+    //     dispatch(wrongCredential());
+    //   }
+    // }).catch(error => {
+    //   dispatch(noResponse())
       
-    })
+    // })
   };
 
   useEffect(()=>{

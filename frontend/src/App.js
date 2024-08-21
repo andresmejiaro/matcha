@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './styles/styles.css';
 import React, { useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
 
 import {Header} from './Components/Header.js'
 import { Landing } from './Components/LandingPage.js';
@@ -22,7 +21,7 @@ import {VideoChat} from "./Components/VideoChat.js"
 import { Recover } from './Components/Recover.js';
 import { Footer } from './Components/Footer.js';
 
-import {init} from './Reducers/authSlice.js';
+import {init} from './Slices/authSlice.js';
 import { useDispatch } from 'react-redux';
 
 export const App = () => {

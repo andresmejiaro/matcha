@@ -10,7 +10,7 @@ import React, {useEffect} from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkcreationmail, couldNotCreate, resetSignup } from '../Reducers/signupSlice';
+import { checkcreationmail, couldNotCreate, resetSignup } from '../Slices/signupSlice';
 
 export const SignUp = () => {
   const dispatch = useDispatch();

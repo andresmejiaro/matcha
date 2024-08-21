@@ -1,5 +1,8 @@
 import { createPasswordHash } from "./crypto.mjs";
 import pool from "./db.mjs";
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const checkCredentials = async (inputs) => {
     let conn;    
@@ -17,6 +20,14 @@ const checkCredentials = async (inputs) => {
 }
 
 
+const generateJWT = (username) => {
+    const payload ={"username": username};
+    const jwt_token = jwt.sign(payload, JWT_SECRET, {expiresIn:'1d'});
+    return jwt_token;
+}
+
+
+
 export const signIn = async (req, res) => {
     try{
         const inputs = {
@@ -24,15 +35,22 @@ export const signIn = async (req, res) => {
             password: req.body.password,
         }
         const checkcred = await checkCredentials(inputs);
-        console.log("can log in?", checkcred);
         if (!checkcred){
             return res.status(401).send({"success":false});
         }
-        else 
-            return res.status(201).send({"success":true});
+        else {
+            const jwt_token = generateJWT(inputs.username);
+            return res.status(201).cookie(
+             'token',jwt_token, {
+                httpOnly:true,
+                sameSite: 'strict'
+             }   
+            ).send({"success":true});
+
+        }
     } catch (error){
         return res.status(500).send(error.message);
     }
 }
 
-export default signIn;
+export default signIn;  
