@@ -28,8 +28,9 @@ const checkInputs = (inputs) => {
   };
 
 const validators = async (signupData) =>{
+  let conn;
   try{
-    const conn = await pool.getConnection();
+    conn = await pool.getConnection();
     const query = "select count(username) as total from Users where username=(?)";
     const result = await conn.query(query,[signupData.username]);
     const total = result[0].total;
@@ -44,21 +45,22 @@ const validators = async (signupData) =>{
 
 export const signUp = async (req, res) => {
     try{
-        //console.log(req.body)
+      //console.log(req.body)
         
         const signupData = sanitizeObject(req.body);
-   
-        const validation = await validators(signupData);
-        //console.log(validation)
 
+        const validation = await validators(signupData);
+        
         if (validation){
-        
+          
             const passwordHashed = createPasswordHash(signupData.password,signupData.username);
-        
             const conn = await pool.getConnection();
             const query = "INSERT INTO Users (UserName, PasswordHash) VALUES (?,?)";
             const result = await conn.query(query,[signupData.username,passwordHashed]);
             res.status(201).json({ message: 'User inserted successfully', insertId: result.insertId , success:true});
+            if (conn){
+              conn.release;
+            }
         } else {
             res.status(408).json({message:'Something is wrong with the sent data please try again',success:false});
         }
